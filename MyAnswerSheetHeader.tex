@@ -1,0 +1,42 @@
+
+\newcommand{\repeatntimes}[2]{
+   \newcount\i
+   \i=0
+   \newtoks\ans
+   \loop
+      \ans=\expandafter{\the\ans #2}
+      \advance\i by 1
+      \ifnum\i<#1\repeat
+   \the\ans
+}
+
+\newcommand{\countRepeatntimes}[2]{
+   \newcount\i
+   \i=0
+   \newtoks\ans
+   \loop
+      \advance\i by 1
+      \ans=\expandafter{\the\ans #2}
+      \ifnum\i<#1\repeat
+   \the\ans
+}
+
+\newcounter{row}
+\setcounter{row}{1}
+\newcommand{\co}{\arabic{row}\stepcounter{row}}   
+
+
+\newcommand{\generateTable}[1]{%
+\countRepeatntimes{#1}{%
+\begin{itemize}
+\item[\textbf{\co.}]  \repeatntimes{1}{
+\textcolor{black}{
+\begin{tikzpicture}
+\draw[](0,0)ellipse(4mm and 3mm) node[midway]{د};
+\draw[xshift=12mm](0,0)ellipse(4mm and 3mm) node[midway]{ج};
+\draw[xshift=24mm](0,0)ellipse(4mm and 3mm) node[midway]{ب};
+\draw[xshift=36mm](0,0)ellipse(4mm and 3mm) node[midway]{الف};
+\end{tikzpicture}
+}}
+\end{itemize}
+}}
